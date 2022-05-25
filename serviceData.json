@@ -1,0 +1,26 @@
+[
+  {
+    "name": "Best Quality KeyBoard",
+    "description": "This is an demo product",
+    "pricing": 10,
+    "quanitity": 5000,
+    "minquanitity": 100,
+    "img": "https://st.depositphotos.com/1832477/52760/v/380/depositphotos_527603076-stock-illustration-woman-overgoing-zipline-part-of.jpg?forcejpeg=true"
+  },
+  {
+    "name": "Mouse",
+    "description": "This is an demo product",
+    "pricing": 10,
+    "quanitity": 5000,
+    "minquanitity": 100,
+    "img": "https://st.depositphotos.com/1832477/52760/v/380/depositphotos_527603076-stock-illustration-woman-overgoing-zipline-part-of.jpg?forcejpeg=true"
+  },
+  {
+    "name": "USB Cable",
+    "description": "This is an demo product",
+    "pricing": 10,
+    "quanitity": 5000,
+    "minquanitity": 100,
+    "img": "https://st.depositphotos.com/1832477/52760/v/380/depositphotos_527603076-stock-illustration-woman-overgoing-zipline-part-of.jpg?forcejpeg=true"
+  }
+]
