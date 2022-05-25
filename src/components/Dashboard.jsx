@@ -37,20 +37,33 @@ const Dashboard = () => {
             <div class="flex-none hidden lg:block">
               <ul class="menu menu-horizontal">
                 {/* <!-- Navbar menu content here --> */}
+
+                {!admin && (
+                  <>
+                    <li>
+                      <Link to="/dashboard">MyOrder</Link>
+                    </li>
+                    <li>
+                      <Link to="/dashboard/review">Review</Link>
+                    </li>
+                  </>
+                )}
                 <li>
-                  <Link to="/dashboard">MyOrder</Link>
+                  <Link to="/dashboard/profile">Profile</Link>
                 </li>
-                <li>
-                  <Link to="/dashboard/review">Review</Link>
-                </li>
-                {admin ? (
-                  <li>
-                    <Link to="/dashboard/users">Users</Link>
-                  </li>
-                ) : (
-                  <li>
-                    <Link to="/dashboard/profile">Profile</Link>
-                  </li>
+                {admin && (
+                  <>
+                    <li>
+                      <Link to="/dashboard/users">Users</Link>
+                    </li>
+
+                    <li>
+                      <Link to="/dashboard/add-product">Add Product</Link>
+                    </li>
+                    <li>
+                      <Link to="/dashboard/products">Manage Product</Link>
+                    </li>
+                  </>
                 )}
               </ul>
             </div>
@@ -65,27 +78,36 @@ const Dashboard = () => {
           <label for="my-drawer-2" class="drawer-overlay"></label>
           <ul class="menu p-4 overflow-y-auto w-80 bg-base-100">
             {/* <!-- Sidebar content here --> */}
+            {!admin && (
+              <>
+                <li>
+                  <Link to="/dashboard">MyOrder</Link>
+                </li>
+                <li>
+                  <Link to="/dashboard/review">Review</Link>
+                </li>
+              </>
+            )}
             <li>
-              <Link to="/dashboard">MyOrder</Link>
+              <Link to="/dashboard/profile">Profile</Link>
             </li>
-            <li>
-              <Link to="/dashboard/review">Review</Link>
-            </li>
-            {admin ? (
-              <li>
-                <Link to="/dashboard/users">Users</Link>
-              </li>
-            ) : (
-              <li>
-                <Link to="/dashboard/profile">Profile</Link>
-              </li>
+            {admin && (
+              <>
+                <li>
+                  <Link to="/dashboard/users">Users</Link>
+                </li>
+
+                <li>
+                  <Link to="/dashboard/add-product">Add Product</Link>
+                </li>
+                <li>
+                  <Link to="/dashboard/products">Manage Product</Link>
+                </li>
+              </>
             )}
           </ul>
         </div>
       </div>
-      <button onClick={() => signOut(auth)} className="btn">
-        SingOut
-      </button>
     </>
   );
 };

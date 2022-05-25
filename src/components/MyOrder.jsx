@@ -40,7 +40,7 @@ const MyOrder = () => {
         </thead>
         <tbody>
           {orders.map((order) => (
-            <tr>
+            <tr key={order._id}>
               <td>{order.productName}</td>
               <td>{order.address}</td>
               <td>{order.total}</td>

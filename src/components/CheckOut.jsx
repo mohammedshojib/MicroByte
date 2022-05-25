@@ -16,7 +16,7 @@ const CheckOut = () => {
 
   const HandleCheckout = (event) => {
     event.preventDefault();
-    const CheckOut = {
+    const checkout = {
       email: user.email,
       pricing: product.pricing,
       quantity: quantity,
@@ -31,7 +31,7 @@ const CheckOut = () => {
       headers: {
         "content-type": "application/json",
       },
-      body: JSON.stringify(CheckOut),
+      body: JSON.stringify(checkout),
     })
       .then((res) => res.json())
       .then((data) => {

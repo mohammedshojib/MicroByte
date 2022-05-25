@@ -21,6 +21,10 @@ import Users from "./components/Users";
 import auth from "../firebase.init";
 import { useAuthState } from "react-firebase-hooks/auth";
 import Payment from "./components/Payment";
+import Profile from "./Profile";
+import AddProduct from "./components/AddProduct";
+import ManagePD from "./components/ManagePD";
+import Notfound from "./components/Notfound";
 
 export const productContext = createContext();
 
@@ -42,6 +46,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/login" element={<Login />} />
+            <Route path="*" element={<Notfound />} />
             <Route path="/singup" element={<Signup />} />
             <Route
               path="/dashboard"
@@ -54,6 +59,9 @@ function App() {
               <Route index element={<MyOrder />} />
               <Route path="review" element={<Review />} />
               <Route path="users" element={<Users />} />
+              <Route path="profile" element={<Profile />} />
+              <Route path="add-product" element={<AddProduct />} />
+              <Route path="products" element={<ManagePD />} />
               <Route path="payment/:id" element={<Payment />} />
             </Route>
             <Route path="/q&a" element={<QandA />} />
