@@ -5,7 +5,7 @@ import {
   useCreateUserWithEmailAndPassword,
   useSignInWithGoogle,
 } from "react-firebase-hooks/auth";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import auth from "../../firebase.init";
 
 const Signup = () => {
@@ -83,11 +83,17 @@ const Signup = () => {
               </div>
               <div class="form-control mt-6">
                 <button class="btn btn-primary" type="submit">
-                  Login
+                  Signup
                 </button>
               </div>
             </form>
-            <div class="divider">OR</div>
+            <div class="divider">OR</div>{" "}
+            <p>
+              Allready Have Account!{" "}
+              <Link className="text-primary" to="/login">
+                Login
+              </Link>
+            </p>
             <button onClick={() => signInWithGoogle()} className="btn">
               Contunu With Google
             </button>

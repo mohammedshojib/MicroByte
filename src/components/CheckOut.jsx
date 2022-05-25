@@ -53,11 +53,7 @@ const CheckOut = () => {
       setDisabledButtom(true);
     }
   };
-  const errorHandle = () => {
-    if (quantity < product.minquanitity && quantity > product.quanitity) {
-      toast.error(`mini ${product.minquanitity} max ${product.quanitity}`);
-    }
-  };
+
   return (
     <div class="hero min-h-screen bg-base-200 mt-10">
       <div class="hero-content flex-col lg:flex-row-reverse">
@@ -79,6 +75,7 @@ const CheckOut = () => {
                   placeholder="Name"
                   class="input input-bordered"
                   name="name"
+                  required
                 />
               </div>
               <div class="form-control">
@@ -96,6 +93,7 @@ const CheckOut = () => {
                   placeholder="address"
                   class="input input-bordered"
                   name="address"
+                  required
                 />
               </div>
               <div class="form-control">
@@ -104,6 +102,7 @@ const CheckOut = () => {
                   placeholder="+88017XXXXXXX"
                   class="input input-bordered"
                   name="phnumber"
+                  required
                 />
               </div>
               <div class="form-control">
@@ -117,6 +116,12 @@ const CheckOut = () => {
                   onChange={correctQuantity}
                   defaultValue={product.minquanitity}
                 />
+                <p className="text-bold text-red-500 pt-2">
+                  {quantity < product.minquanitity ||
+                  quantity > product.quanitity
+                    ? `You have to order Min ${product.minquanitity} Max ${product.quanitity}`
+                    : ""}
+                </p>
               </div>
               <h5 className="text-2xl">
                 Total Cost: {quantity * product.pricing}

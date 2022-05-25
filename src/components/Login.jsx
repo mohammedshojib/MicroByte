@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   useAuthState,
   useSignInWithEmailAndPassword,
@@ -8,12 +8,15 @@ import {
 import { useLocation, useNavigate } from "react-router-dom";
 import auth from "../../firebase.init";
 import { Link } from "react-router-dom";
+import { sendPasswordResetEmail } from "firebase/auth";
+import { toast } from "react-toastify";
 
 const Login = () => {
   const [signInWithEmailAndPassword, user2, loading, error] =
     useSignInWithEmailAndPassword(auth);
   const [user, loading2, errorHook] = useAuthState(auth);
   const [signInWithGoogle, user1, loading1, error1] = useSignInWithGoogle(auth);
+  const [semail, setEmail] = useState("");
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
@@ -23,6 +26,11 @@ const Login = () => {
     const email = event.target.email.value;
     const pass = event.target.pass.value;
     signInWithEmailAndPassword(email, pass);
+  };
+  const handleReset = (event) => {
+    event.preventDefault();
+    sendPasswordResetEmail(auth, semail);
+    toast.success("Link sended succsesfully");
   };
   const email = user?.email;
   useEffect(() => {
@@ -62,6 +70,7 @@ const Login = () => {
                   type="email"
                   placeholder="email"
                   class="input input-bordered"
+                  onChange={(e) => setEmail(e.target.value)}
                   name="email"
                 />
               </div>
@@ -76,7 +85,10 @@ const Login = () => {
                   name="pass"
                 />
                 <label class="label">
-                  <a href="#" class="label-text-alt link link-hover">
+                  <a
+                    onClick={handleReset}
+                    class="label-text-alt link link-hover"
+                  >
                     Forgot password?
                   </a>
                 </label>
@@ -88,7 +100,12 @@ const Login = () => {
               </div>
             </form>
             <div class="divider">OR</div>
-            <Link to="/singup">Singup</Link>
+            <p>
+              Create account!{" "}
+              <Link className="text-primary" to="/singup">
+                Singup
+              </Link>
+            </p>
             <button onClick={() => signInWithGoogle()} className="btn">
               Contunu With Google
             </button>
