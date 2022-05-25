@@ -22,7 +22,7 @@ const Profile = () => {
       link: event.target.link.value,
     };
 
-    const url = `http://localhost:5000/update/${email}`;
+    const url = `https://microbyte.herokuapp.com/update/${email}`;
     fetch(url, {
       method: "PUT",
       headers: {
@@ -39,7 +39,7 @@ const Profile = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/users`, {
+      .get(`https://microbyte.herokuapp.com/users`, {
         headers: {
           authorization: `Bearer ${localStorage.getItem("accesToken")}`,
         },

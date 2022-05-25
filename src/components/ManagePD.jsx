@@ -8,7 +8,7 @@ const ManagePD = () => {
   const deletePD = (id) => {
     const proceed = window.confirm("Are you sure?");
     if (proceed) {
-      const url = `http://localhost:5000/productd/${id}`;
+      const url = `https://microbyte.herokuapp.com/productd/${id}`;
       fetch(url, {
         method: "DELETE",
       })

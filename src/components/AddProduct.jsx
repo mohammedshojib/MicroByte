@@ -14,7 +14,7 @@ const AddProduct = () => {
       img: event.target.img.value,
     };
     //<===== UPLOAD PRODUCT ====>
-    const url = "http://localhost:5000/add-products";
+    const url = "https://microbyte.herokuapp.com/add-products";
     fetch(url, {
       method: "POST",
       headers: {

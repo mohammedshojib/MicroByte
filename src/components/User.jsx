@@ -10,7 +10,7 @@ const User = ({ user }) => {
     const id = user?._id;
     const role = "admin";
 
-    const url = `http://localhost:5000/user/admin/${id}`;
+    const url = `https://microbyte.herokuapp.com/user/admin/${id}`;
     fetch(url, {
       method: "PUT",
       headers: {

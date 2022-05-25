@@ -29,14 +29,20 @@ const Signup = () => {
     const email = user2?.email;
     if (user2) {
       const userData = async () => {
-        const { data } = await axios.post("http://localhost:5000/login", {
-          email,
-        });
+        const { data } = await axios.post(
+          "https://microbyte.herokuapp.com/login",
+          {
+            email,
+          }
+        );
         localStorage.setItem("accesToken", data);
         // <===== store user to database ====>
-        const res = await axios.put(`http://localhost:5000/user/${email}`, {
-          email: email,
-        });
+        const res = await axios.put(
+          `https://microbyte.herokuapp.com/user/${email}`,
+          {
+            email: email,
+          }
+        );
         navigate(from);
       };
       userData();

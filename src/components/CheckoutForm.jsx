@@ -13,9 +13,12 @@ const CheckoutForm = ({ orders }) => {
 
   useEffect(() => {
     const paymentColect = async () => {
-      const data = await axios.post("http://localhost:5000/payment/create", {
-        total: totalAmount,
-      });
+      const data = await axios.post(
+        "https://microbyte.herokuapp.com/payment/create",
+        {
+          total: totalAmount,
+        }
+      );
       setClientSecret(data?.data.clientSecret);
     };
     paymentColect();

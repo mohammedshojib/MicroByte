@@ -5,7 +5,7 @@ const Orders = () => {
   const [orders, setOrders] = useState([]);
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/orders`, {
+      .get(`https://microbyte.herokuapp.com/orders`, {
         headers: {
           authorization: `Bearer ${localStorage.getItem("accesToken")}`,
         },
@@ -18,7 +18,7 @@ const Orders = () => {
   const deleteOrder = (id) => {
     const proceed = window.confirm("Are you sure?");
     if (proceed) {
-      const url = `http://localhost:5000/orderd/${id}`;
+      const url = `https://microbyte.herokuapp.com/orderd/${id}`;
       fetch(url, {
         method: "DELETE",
       })

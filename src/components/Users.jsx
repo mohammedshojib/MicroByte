@@ -7,7 +7,7 @@ const Users = () => {
   const [users, setUsers] = useState([]);
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/users`, {
+      .get(`https://microbyte.herokuapp.com/users`, {
         headers: {
           authorization: `Bearer ${localStorage.getItem("accesToken")}`,
         },

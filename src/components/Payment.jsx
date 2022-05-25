@@ -13,7 +13,7 @@ const Payment = () => {
   const [orders, setOrders] = useState([]);
 
   useEffect(() => {
-    const url = `http://localhost:5000/payment/${id}`;
+    const url = `https://microbyte.herokuapp.com/payment/${id}`;
     const myItems = async () => {
       const { data } = await axios
         .get(url, {

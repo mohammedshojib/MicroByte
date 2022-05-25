@@ -25,7 +25,7 @@ const CheckOut = () => {
       phone: event.target.phnumber.value,
       productName: product.name,
     };
-    const url = "http://localhost:5000/checkout";
+    const url = "https://microbyte.herokuapp.com/checkout";
     fetch(url, {
       method: "POST",
       headers: {
@@ -44,7 +44,7 @@ const CheckOut = () => {
       });
     const id = product?._id;
     const updatedQuantity = product.quanitity - quantity;
-    fetch(`http://localhost:5000/quanrtity/${id}`, {
+    fetch(`https://microbyte.herokuapp.com/quanrtity/${id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",

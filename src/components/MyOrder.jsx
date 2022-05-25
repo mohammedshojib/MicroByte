@@ -12,7 +12,7 @@ const MyOrder = () => {
     const email = user.email;
 
     const myItems = async () => {
-      const url = `http://localhost:5000/my-order?email=${email}`;
+      const url = `https://microbyte.herokuapp.com/my-order?email=${email}`;
       const { data } = await axios
         .get(url, {
           headers: {
@@ -29,7 +29,7 @@ const MyOrder = () => {
   const deleteOrder = (id) => {
     const proceed = window.confirm("Are you sure?");
     if (proceed) {
-      const url = `http://localhost:5000/deleteo/${id}`;
+      const url = `https://microbyte.herokuapp.com/deleteo/${id}`;
       fetch(url, {
         method: "DELETE",
       })
