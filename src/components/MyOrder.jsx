@@ -3,7 +3,6 @@ import React, { useContext, useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { Link } from "react-router-dom";
 import auth from "../../firebase.init";
-import { productContext } from "../App";
 
 const MyOrder = () => {
   const [orders, setOrders] = useState([]);
@@ -26,6 +25,23 @@ const MyOrder = () => {
 
     myItems();
   }, [user]);
+
+  const deleteOrder = (id) => {
+    const proceed = window.confirm("Are you sure?");
+    if (proceed) {
+      const url = `http://localhost:5000/deleteo/${id}`;
+      fetch(url, {
+        method: "DELETE",
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          const remaining = orders.filter((pd) => pd._id !== id);
+          setOrders(remaining);
+          toast.success("Order canceled succsessfully");
+        });
+    }
+  };
   return (
     <div class="overflow-x-auto">
       <table class="table w-full">
@@ -35,6 +51,7 @@ const MyOrder = () => {
             <th>Address</th>
             <th>Total</th>
             <th>Quantity</th>
+            <th>Pay</th>
             <th>Pay</th>
           </tr>
         </thead>
@@ -54,6 +71,14 @@ const MyOrder = () => {
                     Pay
                   </Link>
                 )}
+              </td>
+              <td>
+                <button
+                  onClick={() => deleteOrder(order._id)}
+                  className="btn btn-xs"
+                >
+                  Canceled Order
+                </button>
               </td>
             </tr>
           ))}
