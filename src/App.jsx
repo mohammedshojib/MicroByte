@@ -17,7 +17,7 @@ import "react-toastify/dist/ReactToastify.css";
 import MyOrder from "./components/MyOrder";
 import Review from "./components/Review";
 import Users from "./components/Users";
-// import useAdmin from "./Hooks/useAdmin";
+import useAdmin from "./Hooks/useAdmin";
 import auth from "../firebase.init";
 import { useAuthState } from "react-firebase-hooks/auth";
 import Payment from "./components/Payment";
@@ -30,8 +30,8 @@ export const productContext = createContext();
 
 function App() {
   const [products, setProducts] = useState([]);
-  // const [user, loading2, errorHook] = useAuthState(auth);
-  // const [admin] = useAdmin(user);
+  const [user, loading2, errorHook] = useAuthState(auth);
+  const [admin] = useAdmin(user);
 
   useEffect(() => {
     fetch("http://localhost:5000/products")
@@ -56,7 +56,7 @@ function App() {
                 </RequireAuth>
               }
             >
-              <Route index element={<MyOrder />} />
+              <Route index element={admin ? <ManagePD /> : <MyOrder />} />
               <Route path="review" element={<Review />} />
               <Route path="users" element={<Users />} />
               <Route path="profile" element={<Profile />} />
