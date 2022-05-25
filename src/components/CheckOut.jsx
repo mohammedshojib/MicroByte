@@ -42,6 +42,19 @@ const CheckOut = () => {
       .catch((error) => {
         toast.error(error);
       });
+    const id = product?._id;
+    const updatedQuantity = product.quanitity - quantity;
+    fetch(`http://localhost:5000/quanrtity/${id}`, {
+      method: "PUT",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({ updatedQuantity }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+      });
   };
   const correctQuantity = (event) => {
     const quantity = Number(event.target.value);
