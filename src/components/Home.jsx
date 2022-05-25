@@ -1,8 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
 import { productContext } from "../App";
 import HeroIMG from "../assets/heroIll.jpg";
+import About from "./About";
+import FootBar from "./FootBar";
 import ProductCard from "./ProductCard";
 import Reviews from "./Reviews";
+import SpBar from "./SpBar";
 
 const Home = () => {
   const [products, setProducts] = useContext(productContext);
@@ -36,10 +39,71 @@ const Home = () => {
           complement
           <br /> to today's high tech industries.
         </p>
-        <div className="grid grid-cols-3 lg:grid-rows-3 mt-10">
-          <div>1</div>
-          <div>1</div>
-          <div>1</div>
+        <div className=" mt-10 my-10">
+          <div class="stats shadow">
+            <div class="stat">
+              <div class="stat-figure text-secondary">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  class="inline-block w-8 h-8 stroke-current"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                  ></path>
+                </svg>
+              </div>
+              <div class="stat-title">Costomer</div>
+              <div class="stat-value">31K+</div>
+              <div class="stat-desc">Jan 1st 21 - Jan 1st 22</div>
+            </div>
+
+            <div class="stat">
+              <div class="stat-figure text-secondary">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  class="inline-block w-8 h-8 stroke-current"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"
+                  ></path>
+                </svg>
+              </div>
+              <div class="stat-title">New Users</div>
+              <div class="stat-value">4,200</div>
+              <div class="stat-desc">↗︎ 400 (22%)</div>
+            </div>
+
+            <div class="stat">
+              <div class="stat-figure text-secondary">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  class="inline-block w-8 h-8 stroke-current"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"
+                  ></path>
+                </svg>
+              </div>
+              <div class="stat-title">New Registers</div>
+              <div class="stat-value">1,200</div>
+              <div class="stat-desc">↘︎ 90 (14%)</div>
+            </div>
+          </div>
         </div>
       </div>
       <div className="grid gap-5 grid-cols-1 m-auto lg:grid-cols-3 mb-10">
@@ -47,6 +111,7 @@ const Home = () => {
           <ProductCard key={pd._id} product={pd} />
         ))}
       </div>
+      <SpBar />
       <div className="w-4/5 m-auto">
         <h2 className="text-center text-4xl">All Revies</h2>
         <div className="grid gap-5 grid-cols-1 m-auto lg:grid-cols-3 mb-10">
@@ -54,7 +119,8 @@ const Home = () => {
             <Reviews key={review._id} review={review} />
           ))}
         </div>
-      </div>
+      </div>{" "}
+      <FootBar />
     </>
   );
 };
