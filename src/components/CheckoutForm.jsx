@@ -5,22 +5,21 @@ import axios from "axios";
 const CheckoutForm = ({ orders }) => {
   const stripe = useStripe();
   const elements = useElements();
-  const [cardError, setCardError] = useState("");
-  const [success, setSuccess] = useState("");
-  const [processing, setProcessing] = useState(false);
-  const [transactionId, setTransactionId] = useState("");
   const [clientSecret, setClientSecret] = useState("");
+  const [transactionId, setTransactionId] = useState("");
 
   const { total, email } = orders;
+  const totalAmount = Number(total);
 
   useEffect(() => {
     const paymentColect = async () => {
-      const { data } = await axios.post(
-        "http://localhost:5000/payment/create",
-        { total }
-      );
+      const data = await axios.post("http://localhost:5000/payment/create", {
+        total: totalAmount,
+      });
+      setClientSecret(data?.data.clientSecret);
     };
     paymentColect();
+    console.log(clientSecret);
   }, []);
 
   return (

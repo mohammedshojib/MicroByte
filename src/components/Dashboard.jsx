@@ -2,8 +2,13 @@ import React from "react";
 import { signOut } from "firebase/auth";
 import auth from "../../firebase.init";
 import { Link, Outlet } from "react-router-dom";
+import useAdmin from "../Hooks/useAdmin";
+import { useAuthState } from "react-firebase-hooks/auth";
 
 const Dashboard = () => {
+  const [user, loading, errorHook] = useAuthState(auth);
+  const [admin] = useAdmin(user);
+  console.log(admin);
   return (
     <>
       <div class="drawer min-h-screen">
@@ -38,9 +43,15 @@ const Dashboard = () => {
                 <li>
                   <Link to="/dashboard/review">Review</Link>
                 </li>
-                <li>
-                  <Link to="/dashboard/users">Users</Link>
-                </li>
+                {admin ? (
+                  <li>
+                    <Link to="/dashboard/users">Users</Link>
+                  </li>
+                ) : (
+                  <li>
+                    <Link to="/dashboard/profile">Profile</Link>
+                  </li>
+                )}
               </ul>
             </div>
           </div>
@@ -60,9 +71,15 @@ const Dashboard = () => {
             <li>
               <Link to="/dashboard/review">Review</Link>
             </li>
-            <li>
-              <Link to="/dashboard/users">Users</Link>
-            </li>
+            {admin ? (
+              <li>
+                <Link to="/dashboard/users">Users</Link>
+              </li>
+            ) : (
+              <li>
+                <Link to="/dashboard/profile">Profile</Link>
+              </li>
+            )}
           </ul>
         </div>
       </div>
