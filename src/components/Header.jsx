@@ -68,6 +68,18 @@ const Header = ({ children }) => {
                       ? "rounded text-primary font-bold uppercase hover:bg-white"
                       : "rounded text-black font-bold uppercase  hover:bg-white"
                   }
+                  to="/portfolio"
+                >
+                  PortFolio
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  className={({ isActive }) =>
+                    isActive
+                      ? "rounded text-primary font-bold uppercase hover:bg-white"
+                      : "rounded text-black font-bold uppercase  hover:bg-white"
+                  }
                   to="/q&a"
                 >
                   Q&A

@@ -26,6 +26,7 @@ import AddProduct from "./components/AddProduct";
 import ManagePD from "./components/ManagePD";
 import Notfound from "./components/Notfound";
 import Orders from "./components/Orders";
+import MyPortfolio from "./components/MyPortfolio";
 
 export const productContext = createContext();
 
@@ -47,6 +48,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/portfolio" element={<MyPortfolio />} />
             <Route path="*" element={<Notfound />} />
             <Route path="/singup" element={<Signup />} />
             <Route
