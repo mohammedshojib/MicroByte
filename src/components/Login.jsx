@@ -10,6 +10,7 @@ import auth from "../../firebase.init";
 import { Link } from "react-router-dom";
 import { sendPasswordResetEmail } from "firebase/auth";
 import { toast } from "react-toastify";
+import { useForm } from "react-hook-form";
 
 const Login = () => {
   const [signInWithEmailAndPassword, user2, loading, error] =
@@ -17,15 +18,18 @@ const Login = () => {
   const [user, loading2, errorHook] = useAuthState(auth);
   const [signInWithGoogle, user1, loading1, error1] = useSignInWithGoogle(auth);
   const [semail, setEmail] = useState("");
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+  } = useForm();
+  let signInError;
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
 
-  const handleLogin = (event) => {
-    event.preventDefault();
-    const email = event.target.email.value;
-    const pass = event.target.pass.value;
-    signInWithEmailAndPassword(email, pass);
+  const onSubmit = (data) => {
+    signInWithEmailAndPassword(data.email, data.password);
   };
   const handleReset = (event) => {
     event.preventDefault();
@@ -67,43 +71,82 @@ const Login = () => {
         </div>
         <div class="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
           <div class="card-body">
-            <form action="" onSubmit={handleLogin}>
-              <div class="form-control">
-                <label class="label">
-                  <span class="label-text">Email</span>
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <div className="form-control w-full max-w-xs">
+                <label className="label">
+                  <span className="label-text">Email</span>
                 </label>
                 <input
                   type="email"
-                  placeholder="email"
-                  class="input input-bordered"
+                  placeholder="Your Email"
                   onChange={(e) => setEmail(e.target.value)}
-                  name="email"
+                  className="input input-bordered w-full max-w-xs"
+                  {...register("email", {
+                    required: {
+                      value: true,
+                      message: "Email is Required",
+                    },
+                    pattern: {
+                      value: /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/,
+                      message: "Provide a valid Email",
+                    },
+                  })}
                 />
+                <label className="label">
+                  {errors.email?.type === "required" && (
+                    <span className="label-text-alt text-red-500">
+                      {errors.email.message}
+                    </span>
+                  )}
+                  {errors.email?.type === "pattern" && (
+                    <span className="label-text-alt text-red-500">
+                      {errors.email.message}
+                    </span>
+                  )}
+                </label>
               </div>
-              <div class="form-control">
-                <label class="label">
-                  <span class="label-text">Password</span>
+              <div className="form-control w-full max-w-xs">
+                <label className="label">
+                  <span className="label-text">Password</span>
                 </label>
                 <input
                   type="password"
-                  placeholder="password"
-                  class="input input-bordered"
-                  name="pass"
+                  placeholder="Password"
+                  className="input input-bordered w-full max-w-xs"
+                  {...register("password", {
+                    required: {
+                      value: true,
+                      message: "Password is Required",
+                    },
+                    minLength: {
+                      value: 6,
+                      message: "Must be 6 characters or longer",
+                    },
+                  })}
                 />
-                <label class="label">
-                  <a
-                    onClick={handleReset}
-                    class="label-text-alt link link-hover"
-                  >
-                    Forgot password?
-                  </a>
+                <label className="label">
+                  {errors.password?.type === "required" && (
+                    <span className="label-text-alt text-red-500">
+                      {errors.password.message}
+                    </span>
+                  )}
+                  {errors.password?.type === "minLength" && (
+                    <span className="label-text-alt text-red-500">
+                      {errors.password.message}
+                    </span>
+                  )}
                 </label>
               </div>
-              <div class="form-control mt-6">
-                <button class="btn btn-primary" type="submit">
-                  Login
-                </button>
-              </div>
+
+              {signInError}
+              <a onClick={handleReset} class="label-text-alt link link-hover">
+                Forgot password?
+              </a>
+              <input
+                className="btn w-full btn-primary max-w-xs text-white"
+                type="submit"
+                value="Login"
+              />
             </form>
             <div class="divider">OR</div>
             <p>
