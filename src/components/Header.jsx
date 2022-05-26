@@ -144,6 +144,55 @@ const Header = ({ children }) => {
               About
             </NavLink>
           </li>
+          <li>
+            <NavLink
+              className={({ isActive }) =>
+                isActive
+                  ? "rounded text-primary font-bold uppercase hover:bg-white"
+                  : "rounded text-black font-bold uppercase  hover:bg-white"
+              }
+              to="/portfolio"
+            >
+              PortFolio
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              className={({ isActive }) =>
+                isActive
+                  ? "rounded text-primary font-bold uppercase hover:bg-white"
+                  : "rounded text-black font-bold uppercase  hover:bg-white"
+              }
+              to="/q&a"
+            >
+              Q&A
+            </NavLink>
+          </li>
+          <li>
+            {!user?.email ? (
+              <NavLink
+                className={({ isActive }) =>
+                  isActive
+                    ? "rounded text-primary font-bold uppercase hover:bg-white"
+                    : "rounded text-black font-bold uppercase  hover:bg-white"
+                }
+                to="/Login"
+              >
+                Login
+              </NavLink>
+            ) : (
+              <NavLink
+                className={({ isActive }) =>
+                  isActive
+                    ? "rounded text-primary font-bold uppercase hover:bg-white"
+                    : "rounded text-black font-bold uppercase  hover:bg-white"
+                }
+                to="/dashboard"
+              >
+                DashBoard
+              </NavLink>
+            )}
+          </li>
         </ul>
       </div>
     </div>
