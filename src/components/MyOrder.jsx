@@ -63,9 +63,7 @@ const MyOrder = () => {
               <td>{order.total}</td>
               <td>{order.quantity}</td>
               <td>
-                {order.pay ? (
-                  "Allready Paid"
-                ) : (
+                {!order.pay && (
                   <Link
                     to={`/dashboard/payment/${order._id}`}
                     className="btn btn-xs"
