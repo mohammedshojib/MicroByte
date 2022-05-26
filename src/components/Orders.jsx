@@ -36,7 +36,7 @@ const Orders = () => {
 
   const makePaid = (id) => {
     const pay = true;
-    const url = `http://localhost:5000/pay/${id}`;
+    const url = `https://microbyte.herokuapp.com/pay/${id}`;
     fetch(url, {
       method: "PUT",
       headers: {
@@ -52,7 +52,7 @@ const Orders = () => {
   };
   const makeSipped = (id) => {
     const shipped = true;
-    const url = `http://localhost:5000/shipped/${id}`;
+    const url = `https://microbyte.herokuapp.com/shipped/${id}`;
     fetch(url, {
       method: "PUT",
       headers: {

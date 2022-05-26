@@ -14,7 +14,7 @@ const CheckoutForm = ({ orders }) => {
   useEffect(() => {
     const paymentColect = async () => {
       const data = await axios.post(
-        "https://microbyte.herokuapp.com/payment/create",
+        "https://microbyte.herokuapp.com/payment/creat",
         {
           total: totalAmount,
         }
@@ -25,6 +25,30 @@ const CheckoutForm = ({ orders }) => {
     console.log(clientSecret);
   }, []);
 
+  const confirmPayment = async (e) => {
+    e.preventDefault();
+
+    await stripe
+      .confirmCardPayment(clientSecret, {
+        payment_method: {
+          card: elements.getElement(CardElement),
+        },
+      })
+      .then((result) => {
+        axios.post("/orders/add", {
+          basket: basket,
+          price: getBasketTotal(basket),
+          email: user?.email,
+          address: address,
+        });
+
+        dispatch({
+          type: "EMPTY_BASKET",
+        });
+        navigate("/");
+      })
+      .catch((err) => console.warn(err));
+  };
   return (
     <div>
       <form>
