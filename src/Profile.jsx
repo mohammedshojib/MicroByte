@@ -7,7 +7,6 @@ import axios from "axios";
 
 const Profile = () => {
   const [user, loading, errorHook] = useAuthState(auth);
-  const [users, setUsers] = useState([]);
   const [newMyUser, setNewMyUser] = useState([]);
   const email = user?.email;
 
@@ -45,11 +44,12 @@ const Profile = () => {
         },
       })
       .then((response) => {
-        setUsers(response.data);
-        const myUser = users.filter((user1) => user1.email == email);
+        const myUser = response.data.filter((user1) => user1.email == email);
         setNewMyUser(myUser);
       });
   }, []);
+
+  console.log(newMyUser);
 
   return (
     <div className="card w-96 m-auto bg-base-100 shadow-xl">
