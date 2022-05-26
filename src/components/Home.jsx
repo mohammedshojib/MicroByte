@@ -1,4 +1,6 @@
+import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
+import { useQuery } from "react-query";
 import { productContext } from "../App";
 import HeroIMG from "../assets/heroIll.jpg";
 import About from "./About";
@@ -9,13 +11,10 @@ import SpBar from "./SpBar";
 
 const Home = () => {
   const [products, setProducts] = useContext(productContext);
-  const [myreviews, setReviews] = useState([]);
   // <<====REVIEWS====>>
-  useEffect(() => {
-    fetch("https://microbyte.herokuapp.com/reviews")
-      .then((res) => res.json())
-      .then((data) => setReviews(data));
-  }, []);
+  const { isLoading, error, data } = useQuery("review", () =>
+    axios.get("https://microbyte.herokuapp.com/reviews")
+  );
 
   return (
     <>
@@ -115,7 +114,7 @@ const Home = () => {
       <div className="w-4/5 m-auto">
         <h2 className="text-center text-4xl">All Revies</h2>
         <div className="grid gap-5 grid-cols-1 m-auto lg:grid-cols-3 mb-10">
-          {myreviews.map((review) => (
+          {data?.data.map((review) => (
             <Reviews key={review._id} review={review} />
           ))}
         </div>
