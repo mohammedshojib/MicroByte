@@ -63,7 +63,9 @@ const MyOrder = () => {
               <td>{order.total}</td>
               <td>{order.quantity}</td>
               <td>
-                {order.total && (
+                {order.pay ? (
+                  "Allready Paid"
+                ) : (
                   <Link
                     to={`/dashboard/payment/${order._id}`}
                     className="btn btn-xs"
@@ -73,12 +75,16 @@ const MyOrder = () => {
                 )}
               </td>
               <td>
-                <button
-                  onClick={() => deleteOrder(order._id)}
-                  className="btn btn-xs"
-                >
-                  Canceled Order
-                </button>
+                {order.pay ? (
+                  "Allready Paid"
+                ) : (
+                  <button
+                    onClick={() => deleteOrder(order._id)}
+                    className="btn btn-xs"
+                  >
+                    Canceled Order
+                  </button>
+                )}
               </td>
             </tr>
           ))}

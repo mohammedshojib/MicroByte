@@ -15,6 +15,7 @@ const User = ({ user }) => {
       method: "PUT",
       headers: {
         "content-type": "application/json",
+        authorization: `Bearer ${localStorage.getItem("accesToken")}`,
       },
       body: JSON.stringify({ role }),
     })
